@@ -1,6 +1,6 @@
 "use client";
 import React, {useState} from "react";
-import {useParams} from "next/navigation";
+import {useParams, useRouter} from "next/navigation";
 import {
   FolderPlus,
   Users,
@@ -72,6 +72,7 @@ interface Member {
 
 const WorkspacePage = () => {
   const params = useParams();
+  const router = useRouter();
   const workspaceId = params.id as string;
 
   // Mock data - in a real app, this would come from an API
@@ -221,20 +222,29 @@ const WorkspacePage = () => {
     setIsCreatingTeam(false);
   };
 
-  // Generate project ID
+  // Generate project ID (11-character alphanumeric)
   const generateProjectId = (): string => {
-    return Date.now().toString() + Math.random().toString(36).substr(2, 9);
+    const chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+    let result = "";
+    for (let i = 0; i < 11; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
   };
 
   // Handle project creation
   const handleCreateProject = async (projectData: ProjectFormData) => {
     setIsCreatingProject(true);
 
+    // Generate unique project ID
+    const projectId = generateProjectId();
+
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     const newProject: Project = {
-      id: generateProjectId(),
+      id: projectId,
       name: projectData.name,
       description: projectData.description,
       status: projectData.status || "active",
@@ -251,6 +261,9 @@ const WorkspacePage = () => {
     setProjects((prev) => [...prev, newProject]);
     setShowCreateProject(false);
     setIsCreatingProject(false);
+
+    // Redirect to the newly created project
+    router.push(`/workspace/${workspaceId}/project/${projectId}`);
   };
 
   const getProjectMemberCount = (project: Project): number => {
@@ -411,6 +424,9 @@ const WorkspacePage = () => {
             {projects.map((project) => (
               <div
                 key={project.id}
+                onClick={() =>
+                  router.push(`/workspace/${workspaceId}/project/${project.id}`)
+                }
                 className="bg-secondary/50 backdrop-blur-sm border border-gray-700/30 rounded-xl p-6 hover:bg-secondary/60 transition-all duration-300 hover:border-yellow-300/20 cursor-pointer group"
               >
                 <div className="flex items-start justify-between mb-4">
