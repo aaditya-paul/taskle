@@ -61,13 +61,16 @@ function Navbar({children}: {children: React.ReactNode}) {
         </button>
 
         {/* Get Started Button */}
-        <button className="hidden lg:flex bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-lg items-center gap-3 font-patrick-hand text-black font-medium py-2.5 px-6 rounded-xl cursor-pointer active:scale-95 transition-all duration-200 ease-out shadow-lg hover:shadow-yellow-300/25">
+        <a
+          href="https://app.localhost:3000"
+          className="hidden lg:flex bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-lg items-center gap-3 font-patrick-hand text-black font-medium py-2.5 px-6 rounded-xl cursor-pointer active:scale-95 transition-all duration-200 ease-out shadow-lg hover:shadow-yellow-300/25"
+        >
           Get Started
           <MoveRightIcon
             className="text-black transition-transform duration-200 group-hover:translate-x-1"
             size={16}
           />
-        </button>
+        </a>
       </nav>
 
       {/* Mobile Navigation */}
@@ -88,10 +91,13 @@ function Navbar({children}: {children: React.ReactNode}) {
               </Link>
             ))}
             <div className="pt-4 border-t border-gray-700/50">
-              <button className="w-full flex bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-lg items-center justify-center gap-3 font-patrick-hand text-black font-medium py-3 px-6 rounded-xl cursor-pointer active:scale-95 transition-all duration-200 ease-out shadow-lg">
+              <a
+                href="https://app.localhost:3000"
+                className="w-full flex bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-lg items-center justify-center gap-3 font-patrick-hand text-black font-medium py-3 px-6 rounded-xl cursor-pointer active:scale-95 transition-all duration-200 ease-out shadow-lg"
+              >
                 Get Started
                 <MoveRightIcon className="text-black" size={16} />
-              </button>
+              </a>
             </div>
           </div>
         </div>
