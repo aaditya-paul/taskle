@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Taskle
 
-## Getting Started
+Taskle is a personal task management application designed to help you organize and prioritize your daily tasks efficiently. It features a handcrafted, warm, and creative UI that feels like a beautifully designed digital notebook.
 
-First, run the development server:
+## ✨ Theme & Design System
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Taskle uses a unique "Handcrafted Productivity" theme:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Dark, warm backgrounds** (`#1B1615`, `#232329`) with high-contrast white text
+- **Yellow accents** (`#fde047`, `#facc15`, `#eab308`) for highlights, buttons, and active states
+- **Handwritten fonts**: `Virgil` for headings, `Patrick Hand` for UI/body, `Geist Sans` as fallback
+- **Glass-morphism**: Semi-transparent overlays, backdrop blur, and soft borders
+- **Generous spacing** and **rounded corners** for a soft, inviting feel
+- **Smooth animations** and **responsive design** for all devices
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+See [`THEME_CONTEXT.md`](./THEME_CONTEXT.md) for a full design system and LLM prompt context.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+1. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   ```
+3. Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-To learn more about Next.js, take a look at the following resources:
+## 🖋️ Fonts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Virgil** (local, for headings/logo)
+- **Patrick Hand** (Google Fonts, for UI/body)
+- **Geist Sans/Mono** (Google Fonts, fallback)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Fonts are loaded and configured in [`src/app/layout.tsx`](./src/app/layout.tsx).
 
-## Deploy on Vercel
+## 🛠️ Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Next.js 15](https://nextjs.org/) (App Router, Server Components)
+- [React 19](https://react.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Lucide Icons](https://lucide.dev/)
+- [@tanstack/react-query](https://tanstack.com/query/latest)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Project Structure
+
+- `src/app/` — App routes, layout, and global styles
+- `src/components/` — UI components (Navbar, Home, etc.)
+- `public/assets/fonts/` — Local font files (Virgil)
+- `THEME_CONTEXT.md` — Full design system and LLM prompt context
+
+## 🧑‍🎨 Contributing
+
+Pull requests and feedback are welcome! Please read the theme context before contributing UI changes.
+
+## 📄 License
+
+MIT
+
+---
+
+> Taskle: Productivity, beautifully handcrafted.
