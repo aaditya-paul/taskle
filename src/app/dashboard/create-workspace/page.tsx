@@ -1,7 +1,12 @@
+import WorkspaceForm from "@/components/WorkspaceForm";
 import React from "react";
 
 function Page() {
-  return <div>Page</div>;
+  return (
+    <div>
+      <WorkspaceForm />
+    </div>
+  );
 }
 
 export default Page;
