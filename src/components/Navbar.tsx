@@ -2,12 +2,13 @@
 import React, {useState} from "react";
 import {MoveRightIcon, MenuIcon, XIcon} from "lucide-react";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 function Navbar({children}: {children: React.ReactNode}) {
   const navbarHeight = 64;
   const topMargin = 24; // 6 * 4px (top-6 in Tailwind)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const router = useRouter();
   const routes = [
     {
       label: "Home",
@@ -61,8 +62,8 @@ function Navbar({children}: {children: React.ReactNode}) {
         </button>
 
         {/* Get Started Button */}
-        <a
-          href="https://app.localhost:3000"
+        <Link
+          href="/redirect"
           className="hidden lg:flex bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-lg items-center gap-3 font-patrick-hand text-black font-medium py-2.5 px-6 rounded-xl cursor-pointer active:scale-95 transition-all duration-200 ease-out shadow-lg hover:shadow-yellow-300/25"
         >
           Get Started
@@ -70,7 +71,7 @@ function Navbar({children}: {children: React.ReactNode}) {
             className="text-black transition-transform duration-200 group-hover:translate-x-1"
             size={16}
           />
-        </a>
+        </Link>
       </nav>
 
       {/* Mobile Navigation */}
@@ -91,13 +92,10 @@ function Navbar({children}: {children: React.ReactNode}) {
               </Link>
             ))}
             <div className="pt-4 border-t border-gray-700/50">
-              <a
-                href="https://app.localhost:3000"
-                className="w-full flex bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-lg items-center justify-center gap-3 font-patrick-hand text-black font-medium py-3 px-6 rounded-xl cursor-pointer active:scale-95 transition-all duration-200 ease-out shadow-lg"
-              >
+              <button className="w-full flex bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-lg items-center justify-center gap-3 font-patrick-hand text-black font-medium py-3 px-6 rounded-xl cursor-pointer active:scale-95 transition-all duration-200 ease-out shadow-lg">
                 Get Started
                 <MoveRightIcon className="text-black" size={16} />
-              </a>
+              </button>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import {CheckCircleIcon, PlusIcon, StarIcon} from "lucide-react";
+import Link from "next/link";
 
 function Home() {
   return (
@@ -21,7 +22,10 @@ function Home() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-              <button className="group bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-black font-patrick-hand font-medium text-lg px-8 py-4 rounded-2xl transition-all duration-300 ease-out shadow-lg hover:shadow-yellow-300/25 active:scale-95">
+              <Link
+                href={"/redirect"}
+                className="group bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-black font-patrick-hand font-medium text-lg px-8 py-4 rounded-2xl transition-all duration-300 ease-out shadow-lg hover:shadow-yellow-300/25 active:scale-95"
+              >
                 <span className="flex items-center gap-3">
                   Start Creating
                   <PlusIcon
@@ -29,7 +33,7 @@ function Home() {
                     className="transition-transform duration-300 group-hover:rotate-90"
                   />
                 </span>
-              </button>
+              </Link>
               <button className="font-patrick-hand text-lg text-foreground/90 hover:text-yellow-300 px-8 py-4 border border-gray-700/50 rounded-2xl transition-all duration-300 hover:border-yellow-300/50 hover:bg-gray-700/10">
                 Learn More
               </button>
