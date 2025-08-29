@@ -1,5 +1,5 @@
 "use client";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import {
   LayoutDashboardIcon,
@@ -12,6 +12,7 @@ import {
   LogOutIcon,
   XIcon,
 } from "lucide-react";
+import {usePathname, useRouter} from "next/navigation";
 
 interface Workspace {
   id: string;
@@ -27,6 +28,13 @@ interface SidebarProps {
 function Sidebar({isMobileOpen = false, onMobileClose}: SidebarProps) {
   const [isWorkspacesOpen, setIsWorkspacesOpen] = useState(true);
   const [activeRoute, setActiveRoute] = useState("/dashboard");
+  const path = usePathname();
+  const router = useRouter();
+  useEffect(() => {
+    console.log(path);
+
+    setActiveRoute(path);
+  }, [router, path]);
 
   // Sample workspaces data
   const workspaces: Workspace[] = [
@@ -44,7 +52,7 @@ function Sidebar({isMobileOpen = false, onMobileClose}: SidebarProps) {
     },
     {
       label: "Create Workspace",
-      path: "/create-workspace",
+      path: "/dashboard/create-workspace",
       icon: PlusIcon,
     },
   ];

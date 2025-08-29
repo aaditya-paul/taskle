@@ -120,4 +120,66 @@ When working with this theme:
 - **Component Structure**: Reusable, accessible components with consistent styling
 - **Responsive**: Mobile-first design with lg: breakpoint for desktop features
 
+## Dashboard Page Design Context
+
+### Overview
+
+The Dashboard page is designed to provide users with a quick overview of their productivity metrics, tasks, and recent activities. It follows the "Handcrafted Productivity" philosophy by combining functional design with a warm, inviting aesthetic.
+
+### Key Design Elements
+
+#### Header
+
+- **Typography**: Uses `font-virgil` for the main greeting and `font-patrick-hand` for the subtext to maintain a personal, handwritten feel.
+- **Colors**:
+  - Greeting text: `#fde047` (Yellow 300) for a warm, energetic highlight.
+  - Subtext: `#ffffff` (Foreground/80) for subtle contrast.
+- **Button**:
+  - Gradient background: `from-yellow-300 to-yellow-400`.
+  - Hover state: `from-yellow-400 to-yellow-500` with shadow effects.
+  - Interaction: Scale transforms and hover lift effects for a tactile feel.
+
+#### Stats Cards
+
+- **Layout**: Responsive grid layout with 1-3 columns based on screen size.
+- **Colors**:
+  - Background: Semi-transparent secondary color with `backdrop-blur-sm`.
+  - Borders: Subtle `#374151` (Gray 700/30) with hover transitions to `#fde047` (Yellow 300/30).
+- **Icons**: Color-coded icons for quick visual recognition:
+  - Green for completed tasks.
+  - Yellow for in-progress tasks.
+  - Blue for productivity metrics.
+- **Hover Effects**: Subtle scaling (`hover:scale-[1.02]`) and active state feedback.
+
+#### Recent Tasks & Activity
+
+- **Typography**:
+  - Task titles: `font-patrick-hand` for a casual, approachable feel.
+  - Time indicators: Smaller, subdued text for secondary information.
+- **Colors**:
+  - Completed tasks: `#10B981` (Green 400) with line-through for differentiation.
+  - Pending tasks: `#ffffff` (Foreground/90) for emphasis.
+  - Activity dots: Pulsing `#fde047` (Yellow 300) for recent updates.
+- **Interaction**: Hover highlights and scale transforms for clickable items.
+
+### Accessibility Enhancements
+
+- **Contrast Ratios**: Ensures all text and interactive elements meet WCAG AA standards.
+- **Focus States**: Clear focus indicators for keyboard navigation.
+- **Responsive Design**: Optimized for mobile-first with breakpoints for larger screens.
+
+### Animations
+
+- **Transitions**: Smooth 200-300ms transitions for hover and active states.
+- **Hover Effects**: Lift and shadow enhancements for interactive elements.
+- **Pulse Animations**: Used for activity indicators to draw attention subtly.
+
+### Technical Implementation
+
+- **Framework**: Next.js with Tailwind CSS.
+- **Responsive Grid**: Utilizes Tailwind's `grid-cols-1`, `sm:grid-cols-2`, and `lg:grid-cols-3` for adaptive layouts.
+- **State Management**: Prefetching and navigation handled via Next.js `useRouter` for seamless transitions.
+
+This design ensures the Dashboard page is both functional and visually aligned with the Taskle theme, creating a delightful user experience.
+
 This theme creates a unique position in the productivity app space by feeling more like a beautifully designed physical notebook brought to digital life, rather than a sterile corporate tool.
