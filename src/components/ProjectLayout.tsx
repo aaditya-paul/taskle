@@ -1,27 +1,23 @@
 "use client";
 import React, {useState} from "react";
 import {MenuIcon} from "lucide-react";
-import {usePathname} from "next/navigation";
-import WorkspaceSidebar from "@/components/WorkspaceSidebar";
+import ProjectSidebar from "@/components/ProjectSidebar";
 
-export default function Layout({children}: {children: React.ReactNode}) {
+interface ProjectLayoutProps {
+  children: React.ReactNode;
+  projectName?: string;
+}
+
+function ProjectLayout({children, projectName}: ProjectLayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
-
-  // Check if we're in a project route
-  const isInProject = pathname.includes("/project/");
-
-  // If we're in a project, just render the children (project layout will handle its own layout)
-  if (isInProject) {
-    return <>{children}</>;
-  }
 
   return (
     <div className="flex h-screen bg-[#1B1615]">
       {/* Sidebar */}
-      <WorkspaceSidebar
+      <ProjectSidebar
         isMobileOpen={isMobileMenuOpen}
         onMobileClose={() => setIsMobileMenuOpen(false)}
+        projectName={projectName}
       />
 
       {/* Main Content */}
@@ -36,7 +32,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
               <MenuIcon size={20} />
             </button>
             <h1 className="font-patrick-hand text-lg text-foreground/90 truncate">
-              Workspace
+              {projectName || "Project"}
             </h1>
           </div>
         </div>
@@ -47,3 +43,5 @@ export default function Layout({children}: {children: React.ReactNode}) {
     </div>
   );
 }
+
+export default ProjectLayout;
