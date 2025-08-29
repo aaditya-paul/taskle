@@ -4,12 +4,17 @@ import {MoveRightIcon, MenuIcon, XIcon} from "lucide-react";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
 
+interface NavbarRoutes {
+  label: string;
+  path: string;
+}
+
 function Navbar({children}: {children: React.ReactNode}) {
   const navbarHeight = 64;
   const topMargin = 24; // 6 * 4px (top-6 in Tailwind)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
-  const routes = [
+  const routes: NavbarRoutes[] = [
     {
       label: "Home",
       path: "/",
