@@ -1,39 +1,94 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import {
   CheckCircleIcon,
   ClockIcon,
   TrendingUpIcon,
   PlusIcon,
   CalendarIcon,
+  LogOutIcon,
+  UserIcon,
 } from "lucide-react";
 import {useRouter} from "next/navigation";
+import { signOut } from "next-auth/react";
+import { useRequireAuth } from "@/hooks/useAuth";
 
 function Dashboard() {
   const router = useRouter();
+  const { session, loading } = useRequireAuth();
+
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: "/login" });
+  };
+
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-primary via-secondary to-primary">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-yellow-300 mx-auto mb-4"></div>
+          <p className="font-patrick-hand text-foreground/70 text-lg">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       {/* Header */}
       <div className="border-b border-gray-700/50 bg-secondary/50 backdrop-blur-sm px-4 md:px-8 py-6">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-virgil text-yellow-300 font-bold">
-              Good morning! 👋
-            </h1>
-            <p className="font-patrick-hand text-foreground/80 text-base md:text-lg mt-1">
-              Let&apos;s make today productive
-            </p>
-          </div>
-          <button
-            onMouseEnter={() => router.prefetch("/dashboard/create-workspace")}
-            onClick={() => router.push("/dashboard/create-workspace")}
-            className="mt-4 md:mt-0 w-full md:w-auto bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-black font-patrick-hand font-medium px-4 md:px-6 py-2.5 md:py-3 rounded-xl transition-all duration-200 active:scale-95 shadow-lg cursor-pointer hover:shadow-lg transform hover:-translate-y-0.5"
-          >
-            <div className="flex items-center justify-center gap-2">
-              <PlusIcon size={18} />
-              New Workspace
+          <div className="flex items-center gap-4">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-virgil text-yellow-300 font-bold">
+                Good morning, {session?.user?.name?.split(' ')[0] || 'User'}! 👋
+              </h1>
+              <p className="font-patrick-hand text-foreground/80 text-base md:text-lg mt-1">
+                Let&apos;s make today productive
+              </p>
             </div>
-          </button>
+          </div>
+          
+          <div className="flex items-center gap-3 mt-4 md:mt-0 w-full md:w-auto">
+            {/* User Info */}
+            <div className="flex items-center gap-2 px-3 py-2 bg-gray-700/30 rounded-lg">
+              {session?.user?.image ? (
+                <Image 
+                  src={session.user.image} 
+                  alt={session.user.name || 'User'} 
+                  width={24}
+                  height={24}
+                  className="rounded-full"
+                />
+              ) : (
+                <UserIcon size={20} className="text-foreground/70" />
+              )}
+              <span className="font-patrick-hand text-foreground/90 text-sm hidden md:block">
+                {session?.user?.name || session?.user?.email}
+              </span>
+            </div>
+
+            {/* Logout Button */}
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-3 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 font-patrick-hand rounded-lg transition-all duration-200"
+            >
+              <LogOutIcon size={16} />
+              <span className="hidden md:block">Logout</span>
+            </button>
+
+            {/* Create Workspace Button */}
+            <button
+              onMouseEnter={() => router.prefetch("/dashboard/create-workspace")}
+              onClick={() => router.push("/dashboard/create-workspace")}
+              className="bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-black font-patrick-hand font-medium px-4 md:px-6 py-2.5 md:py-3 rounded-xl transition-all duration-200 active:scale-95 shadow-lg cursor-pointer hover:shadow-lg transform hover:-translate-y-0.5"
+            >
+              <div className="flex items-center justify-center gap-2">
+                <PlusIcon size={18} />
+                New Workspace
+              </div>
+            </button>
+          </div>
         </div>
       </div>
 
